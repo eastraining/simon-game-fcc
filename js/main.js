@@ -2,6 +2,7 @@ $(document).ready(function() {
 	// html tags
 	var startBtn = $("#startBtn");
 	var strictMode = $("#strictMode");
+	var viewport = $("#viewport");
 	var simonBtn = "simonBtn";
 	var numSimonBtns = 4;
 	var disabledTag = "-disabled";
@@ -16,9 +17,9 @@ $(document).ready(function() {
 	var statusMessages = {
 		"initial": "press Start to begin.",
 		"simonSaying": "memorise the button order.",
-		"playerTurn": "press the buttons in order!"
-		"warning": "incorrect! watch again carefully."
-		"fail": "uh oh! better luck next time!"
+		"playerTurn": "press the buttons in order!",
+		"warning": "incorrect! watch again carefully.",
+		"fail": "uh oh! better luck next time!",
 		"win": "congratulations, you have won!"
 	}
 
@@ -61,7 +62,6 @@ $(document).ready(function() {
 	}
 
 	// function for switching the state of the buttons
-	// also returns the new ID
 	function switchIDstate(tag) {
 		var currentID = tag.attr("id");
 		var newID = "";
@@ -89,5 +89,25 @@ $(document).ready(function() {
 		gainNode.disconnect(audioCtx, destination);
 	}
 
+	// function for beginning player turn
+	function playerTurn() {
+		for (var i = 0; i < numSimonBtns; i++) {
+			var temp = i.toString();
+			switchIDstate(returnIDtag(simonBtn + temp + disabledTag));
+		}
+		writeHTML(viewport)(statusMessages.playerTurn).hide().fadeIn(600);
+	}
+
+	// TODO: switch message and play initial sequence
+	// add sequence to array to save it
+
+	// TODO: player move evaluator
+	// listen for sequence
+	// if correct, continue again
+	// if wrong, replay sequence
+	// if strict, end game
+
+	// TODO: trigger game when Start button is pressed.
+	// include trigger for restarting game by swapping out Start
 
 });

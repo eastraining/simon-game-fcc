@@ -39,6 +39,10 @@
 	justify-content: center;
 }
 
+.command-bar__content__game {
+	min-height: 12rem;
+}
+
 .command-bar__viewport > .command-bar__content {
 	background-color: #d3d3d3;
 }
@@ -46,7 +50,6 @@
 /* individual button styles */
 #simonBtn0 {
 	background-color: #AA0114;
-	height: 12rem;
 	cursor: pointer;
 	cursor: hand;
 }
@@ -58,12 +61,10 @@
 
 #simonBtn0-disabled {
 	background-color: #AA0114;
-	height: 12rem;
 }
 
 #simonBtn1 {
 	background-color: #009ACD;
-	height: 12rem;
 	cursor: pointer;
 	cursor: hand;
 }
@@ -75,12 +76,10 @@
 
 #simonBtn1-disabled {
 	background-color: #009ACD;
-	height: 12rem;
 }
 
 #simonBtn2 {
 	background-color: #488214;
-	height: 12rem;
 	cursor: pointer;
 	cursor: hand;
 }
@@ -92,12 +91,10 @@
 
 #simonBtn2-disabled {
 	background-color: #488214;
-	height: 12rem;
 }
 
 #simonBtn3 {
 	background-color: #EEB422;
-	height: 12rem;
 	cursor: pointer;
 	cursor: hand;
 }
@@ -109,7 +106,6 @@
 
 #simonBtn3-disabled {
 	background-color: #EEB422;
-	height: 12rem;
 }
 
 #startBtn {
@@ -122,7 +118,7 @@
 }
 
 /* The switch - the box around the slider */
-label {
+.command-bar__content > label, .command-bar__content > p {
 	margin: 0%;
 }
 
