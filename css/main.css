@@ -43,44 +43,73 @@
 	background-color: #d3d3d3;
 }
 
-#simonBtn1 {
+/* individual button styles */
+#simonBtn0 {
 	background-color: #AA0114;
 	height: 12rem;
+	cursor: pointer;
+	cursor: hand;
 }
 
-#simonBtn1:hover, #simonBtn1:focus {
+#simonBtn0:hover, #simonBtn1:focus {
 	background-color: #FF0000;
 	border: 2px solid #000000;
 }
 
-#simonBtn2 {
-	background-color: #009ACD;
+#simonBtn0-disabled {
+	background-color: #AA0114;
 	height: 12rem;
 }
 
-#simonBtn2:hover, #simonBtn2:focus {
+#simonBtn1 {
+	background-color: #009ACD;
+	height: 12rem;
+	cursor: pointer;
+	cursor: hand;
+}
+
+#simonBtn1:hover, #simonBtn2:focus {
 	background-color: #00BFFF;
 	border: 2px solid #000000;
 }
 
-#simonBtn3 {
-	background-color: #488214;
+#simonBtn1-disabled {
+	background-color: #009ACD;
 	height: 12rem;
 }
 
-#simonBtn3:hover, #simonBtn3:focus {
+#simonBtn2 {
+	background-color: #488214;
+	height: 12rem;
+	cursor: pointer;
+	cursor: hand;
+}
+
+#simonBtn2:hover, #simonBtn3:focus {
 	background-color: #61B329;
 	border: 2px solid #000000;
 }
 
-#simonBtn4 {
-	background-color: #EEB422;
+#simonBtn2-disabled {
+	background-color: #488214;
 	height: 12rem;
 }
 
-#simonBtn4:hover, #simonBtn4:focus {
+#simonBtn3 {
+	background-color: #EEB422;
+	height: 12rem;
+	cursor: pointer;
+	cursor: hand;
+}
+
+#simonBtn3:hover, #simonBtn4:focus {
 	background-color: #FFCC11;
 	border: 2px solid #000000;
+}
+
+#simonBtn3-disabled {
+	background-color: #EEB422;
+	height: 12rem;
 }
 
 #startBtn {
