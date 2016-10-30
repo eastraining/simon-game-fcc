@@ -4,14 +4,14 @@ $(document).ready(function() {
 	var strictMode = $("#strictMode");
 	var viewport = $("#viewport");
 	var simonBtn = "simonBtn";
-	var numSimonBtns = 4;
+	var numSimonBtns = 20;
 
 	// global variables used in functions
 	var currentSeq = [];
 	var currentCount = 0;
 	var allSimonBtns = {};
-	var allSoundFreqs = [180, 200, 230, 250];
-	var warningSound = 300;
+	var allSoundFreqs = [261.63, 293.66, 329.63, 349.23];
+	var warningSound = 196;
 	var maxRounds = 20;
 
 	// messages for .command-bar__viewport
@@ -36,6 +36,7 @@ $(document).ready(function() {
 	oscillator.type = "sine";
 	oscillator.frequency.value = 180;
 	oscillator.start();
+	gainNode.gain.value = 0;
 
 	// function for reading text content of html
 	function readText(tag) {
@@ -67,7 +68,7 @@ $(document).ready(function() {
 	// plays the required frequency
 	function playSound(frequency) {
 		oscillator.frequency.value = frequency;
-		gainNode.connect(audioCtx.destination);
+		gainNode.gain.value = 0.5;
 	}
 
 	// function for changing text in viewport
@@ -77,7 +78,7 @@ $(document).ready(function() {
 
 	// function for stopping sound
 	function stopSound() {
-		gainNode.disconnect(audioCtx.destination);
+		gainNode.gain.value = 0;
 	}
 
 	// switch message and play initial sequence
@@ -94,19 +95,18 @@ $(document).ready(function() {
 		var delay = 0;
 		var killDelay = 0;
 		
-		for (var i = 0; i < currentSeq.length; i++) {
-			var temp = currentSeq[i].toString();
-			var tempTag = allSimonBtns[temp];
-			var tempFreq = allSoundFreqs[currentSeq[i]];
-			delay = i * 1200 + 1500;
-			killDelay = delay + 900;
+		for (let i = 0; i < currentSeq.length; i++) {
+			let tempTag = allSimonBtns[currentSeq[i]];
+			let tempFreq = allSoundFreqs[currentSeq[i]];
+			delay = i * 800 + 800;
+			killDelay = delay + 600;
 			setTimeout(function() {
 				playSound(tempFreq);
-				$("#simonBtn1").addClass("active");
+				tempTag.addClass("active");
 			}, delay);
 			setTimeout(function() {
 				stopSound();
-				$("#simonBtn1").removeClass("active");
+				tempTag.removeClass("active");
 			}, killDelay);
 		}
 		setTimeout(function() {
@@ -151,12 +151,13 @@ $(document).ready(function() {
 			$(".command-bar__content__game").off();
 
 			// play error sound'
-			setTimeout(function() {playSound(warningSound);;}, 300);
+			setTimeout(function() {playSound(warningSound);;}, 500);
 			setTimeout(function() {stopSound();}, 1500);
 			
 			// TODO: check if strict mode, else restart compTurn
 			if (strictMode.is(":checked")) {
 				changeViewport(statusMessages.fail);
+				gainNode.disconnect(audioCtx.destination);
 			}
 			else {
 				changeViewport(statusMessages.warning);
@@ -167,6 +168,7 @@ $(document).ready(function() {
 			$(".command-bar__content__game").off();
 			if (currentSeq.length == maxRounds) {
 				changeViewport(statusMessages.win);
+				gainNode.disconnect(audioCtx.destination);
 			}
 			else {
 				changeViewport(statusMessages.pass);
@@ -178,6 +180,7 @@ $(document).ready(function() {
 	// trigger game when Start button is pressed.
 	// include trigger for restarting game by swapping out Start
 	startBtn.click(function() {
+		gainNode.connect(audioCtx.destination);
 		writeHTML(startBtn)("Restart");
 		currentSeq = [];
 		allSimonBtns = {};

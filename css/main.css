@@ -30,7 +30,7 @@
 .command-bar__content {
 	width: 100%;
 	min-height: 6rem;
-	margin: auto;
+	margin: 1% 1% 1% 1%;
 	border: 1px solid #d3d3d3;
 	border-radius: 1rem;
 	display: flex;
